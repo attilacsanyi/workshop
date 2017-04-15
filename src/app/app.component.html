@@ -6,10 +6,11 @@
 
   <md-sidenav-container fxFlex>
     <md-sidenav mode="side" opened>
+
       <md-tab-group>
         <md-tab label="Users">
           <md-nav-list>
-            <md-list-item *ngFor="let user of users">
+            <md-list-item *ngFor="let user of users" (click)="selectedUser = user">
               <md-icon svgIcon="avatars:{{user.avatar}}" class="avatar"></md-icon>
               <span>{{user.name}}</span>
             </md-list-item>
@@ -19,9 +20,12 @@
           <span>Settings</span>
         </md-tab>
       </md-tab-group>
+
     </md-sidenav>
     <div class="content">
-      Page Content
+      <md-icon svgIcon="avatars:{{selectedUser.avatar}}" class="avatar"></md-icon>
+      <h2>{{selectedUser.name}}</h2>
+      <p>{{selectedUser.details}}</p>
     </div>
   </md-sidenav-container>
 
