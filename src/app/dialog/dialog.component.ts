@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'ws-dialog',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogComponent implements OnInit {
 
-  constructor() { }
+  avatars = new Array(16).fill(0).map((_, i) => `svg-${i + 1}`);
+  selectedAvatar = this.avatars[0];
+
+  constructor(public dialogRef: MdDialogRef<DialogComponent>) {}
 
   ngOnInit() {
   }
