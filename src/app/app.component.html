@@ -49,7 +49,7 @@
   </md-sidenav-container>
 
   <md-menu #themeMenu x-position="before">
-    <button md-menu-item (click)="isDarkTheme = !isDarkTheme">Toggle Theme</button>
+    <button md-menu-item (click)="toggleTheme()">Toggle Theme</button>
   </md-menu>
 
   <button md-fab (click)="openAdminDialog()" class="fab-bottom-right">

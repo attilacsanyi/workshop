@@ -1,5 +1,6 @@
+import { ThemeService } from './theme.service';
 import { DialogComponent } from './dialog/dialog.component';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdIconRegistry, MdDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -8,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Angular Material Workshop';
 
   users = [
@@ -75,13 +76,26 @@ export class AppComponent {
 
   selectedUser = this.users[0];
 
-  isDarkTheme = false;
+  isDarkTheme = true;
 
-  constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer, private dialog: MdDialog) {
+  constructor(
+    iconRegistry: MdIconRegistry,
+    sanitizer: DomSanitizer,
+    private dialog: MdDialog,
+    private themeService: ThemeService) {
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
     const avatarsSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./assets/avatars.svg');
 
     iconRegistry.addSvgIconSetInNamespace('avatars', avatarsSafeUrl);
+  }
+
+  ngOnInit() {
+    this.themeService.setThemeClass(this.isDarkTheme);
+  }
+
+  public toggleTheme = () => {
+    this.isDarkTheme = !this.isDarkTheme;
+    this.themeService.setThemeClass(this.isDarkTheme);
   }
 
   private openAdminDialog() {

@@ -1,3 +1,4 @@
+import { ThemeService } from './theme.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,8 +25,8 @@ import { DialogComponent } from './dialog/dialog.component';
     FlexLayoutModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ThemeService],
   entryComponents: [DialogComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
